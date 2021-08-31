@@ -4,22 +4,23 @@
 
 size = int(input("chose the size of the star (1, 2, 3, ...)\n"))
 
-
+#creating the board
 rows = size * 4 + 1
 cols = size * 6 + 1
 board = [[' ' for i in range(cols)] for j in range(rows)]
 
-midle_cols = int(size * 6 / 2)
+middle_cols = int(size * 6 / 2)
 last_rows = rows - 1
+board[0][middle_cols] = '*'
+board[last_rows][middle_cols] = '*'
 
-board[0][midle_cols] = '*'
-board[last_rows][midle_cols] = '*'
-
+#var setup
 x = 0
 y = last_rows
-chars_left = midle_cols
-chars_right = midle_cols
+chars_left = middle_cols
+chars_right = middle_cols
 
+#draw the top and botom part of the star
 for n in range(size - 1):
     chars_right += 1
     chars_left -= 1
@@ -35,6 +36,7 @@ y -= 1
 chars_right += 1
 chars_left -= 1
 
+#draw the horizontal line
 while chars_left > -1:
     board[x][chars_left] = '*'
     board[y][chars_left] = '*'
@@ -49,6 +51,7 @@ y -= 1
 chars_right -= 2
 chars_left += 2
 
+#draw the middle part of the star
 while chars_left < size + 1 :
     board[x][chars_left] = '*'
     board[y][chars_left] = '*'
@@ -59,16 +62,7 @@ while chars_left < size + 1 :
     chars_right -= 1
     chars_left += 1
 
-print('________________________________________')
-print(f"chars left :{chars_left}")
-print(f"chars right :{chars_right}")
-print(f"x :{x}")
-print(f"y :{y}")
-print('________________________________________\n')
-
-
+#display the board corectly
 for i in range(len(board)):
     for j in range(len(board[i])):
         print(board[i][j], end='')
-    print()
- 
